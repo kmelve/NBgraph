@@ -1,1 +1,1 @@
-function parseXml(e){$(e).find("entry").each(function(){$(".feed").append($(this).attr("title")+"<br />")})}function viewxml(e){console.log(e);var n=$.xml2json(e);console.log(n),$.each(n.feed,function(e,o){console.log(n.feed[e].entry)})}$(document).foundation(),$.ajax({type:"GET",url:"proxy.php",dataType:"xml",success:viewxml});
+$(document).foundation(),$.ajax({url:"proxy.php",dataType:"xml",success:function(n){var o=$.xml2json(n);$.each(o,function(n,o){$.each(o,function(n,o){console.log(o)})})}});
