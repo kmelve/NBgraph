@@ -18,6 +18,12 @@
 
 <body id="NBgraph">
 
+     <div id="container">
+             <input type="text" id="search" placeholder="Søk og finn svar"/>
+             <input type="button" id="button" value="Search" />
+             <ul id="result"></ul>
+        </div>
+
     <div id="results">
         Results
     </div>

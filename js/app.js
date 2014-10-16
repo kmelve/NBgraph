@@ -1,33 +1,66 @@
 $(document).ready(function() {
+    function search(){
+        var searchstring = $("#search").val();
 
-    $.getJSON("js/content_proxy.php",function(data){
-        var items = [];
-        var array = data.entry;
-        //console.log(data.link);
-        // console.log(data);
-        // console.log(data.updated);
-        // console.dir(data.link);
-        // var array = data['link'][1]['@attributes']['href'];
-        // console.log(array);
-        // var array = data['entry'][1]['title'];
-        console.dir(data);
-
-        $.each( array, function( key, val ) {
-            console.log(val.title);
-            items.push("<li>" + val.title + "</li>");
-
-            $.each(val, function(id, value) {
-                if (id == "link") {
-
-                    //console.log(value["Object"].href);
-
-                }
-            });
+        $.ajax({
+            url: 'js/test.php',
+            data: searchstring,
+            datatype: 'json',
+            type: 'post',
+            success: function(output) {
+                console.log(output);
+                $('#results').append().text(output.subtitle);
+            }
         });
-     var results = items.join("");
-     $("#results").append(results);
+    }
+
+    $("#button").click(function(){
+        console.log("søkte");
+        search();
     });
-});
+
+    $('#search').keyup(function(e) {
+        if(e.keyCode == 13) {
+            search();
+        }
+    });
+// {
+//                 searchword: searchstring
+//                 // itemsPerPage: 2,
+//                 // filter: "Bøker",
+//                 // sort: "ASC",
+//                 // freetext: "true",
+//                 // facet: "year"
+//             },
+
+//     $.getJSON("js/content_proxy.php",function(data){
+//         var items = [];
+//         var array = data.entry;
+//         //console.log(data.link);
+//         // console.log(data);
+//         // console.log(data.updated);
+//         // console.dir(data.link);
+//         // var array = data['link'][1]['@attributes']['href'];
+//         // console.log(array);
+//         // var array = data['entry'][1]['title'];
+//         console.dir(data);
+
+//         $.each( array, function( key, val ) {
+//             console.log(val.title);
+//             items.push("<li>" + val.title + "</li>");
+
+//             $.each(val, function(id, value) {
+//                 if (id == "link") {
+
+//                     //console.log(value["Object"].href);
+
+//                 }
+//             });
+//         });
+//      var results = items.join("");
+//      $("#results").append(results);
+//     });
+ });
 
 
 // var datatest = {
