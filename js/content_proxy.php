@@ -1,51 +1,43 @@
 <?php
 header('Content-type: application/json');
-if(function_exists("curl_init")){ // Check if cURL is available
 
-    //I've struggled a bit to get UTF-8 input to work properly. I think urlencode fixes it.
-    //$str = "?q=".urlencode($searchword)."%20(contentClasses:%22public%22)&ft=".$freetext."&itemsPerPage=".$itemsPerPage."&filter=".urlencode($filter)."&sort=".$sort;
+// In case I need these URLs several places, it's nice to have them as variables
+$searchbaseurl = "http://www.nb.no/services/search/v2/search";
+$nburnbaseurl = "http://urn.nb.no/";
+$downloadbaseurl = "http://www.nb.no/nbsok/content/pdf?urn=";
+//$url = $searchbaseurl.$str;
+$url = 'http://www.nb.no/services/search/v2/search/?q=spiritualitet&facet=year&itemsPerPage=10';
 
+$data = file_get_contents($url);
 
-    // In case I need these URLs several places, it's nice to have them as variables
-    $searchbaseurl = "http://www.nb.no/services/search/v2/search";
-    $nburnbaseurl = "http://urn.nb.no/";
-    $downloadbaseurl = "http://www.nb.no/nbsok/content/pdf?urn=";
-    //$url = $searchbaseurl.$str;
-    $url = 'http://www.nb.no/services/search/v2/search/?q=spiritualitet&facet=year&itemsPerPage=10';
+$data_split = explode("<nb:values>", $data);
+$data_split2 = explode("</nb:values>", $data_split[1]);
+$data_splitted = $data_split2[0];
+$data_lines = explode("</nb:value>", $data_splitted);
 
+$dataArray = array();
+foreach($data_lines as $line) {
+    if (strlen($line) > 1)  { // to avoid the last line, which is empty
+        $matches = array();
+        $t = preg_match('/"(.*?)"/s', $line, $matches);
+        $count = intval($matches[1]);
+        $year = substr($line, -4);
+        $dataArray[$year] = $count;
+    }
+}
 
-    $curl = curl_init(); // I find the setopt_array a bit more organized than the inline init
+ksort($dataArray); // sort data by year (i.e. sort array by key)
 
-    curl_setopt_array($curl, array(
-            CURLOPT_RETURNTRANSFER      => true,
-            CURLOPT_URL                 => $url,
-//          CURLOPT_PROGRESSFUNCTION    =>  "progress", // This is to be used for a progress bar
-            CURLOPT_HTTPHEADER          => array('Content-Type: text/xml; charset="UTF-8"'),
-            CURLOPT_ENCODING            => "UTF-8",
-            CURLOPT_USERAGENT           => "NB PDF SØK",
-            CURLOPT_NOPROGRESS          => false
-        ));
+$json_data = array();
+$json_labels = array();
+foreach ($dataArray as $year => $count) {
+    $json_data[] = $count;
+    $json_labels[] = $year;
+}
 
-        $data = curl_exec($curl); //takes the data from cURL and puts in it the $data variable
-        $header  = curl_getinfo($curl); //headerinfo for debugging and so on
+echo json_encode(
+        array("labels" => $json_labels, 
+            "series" => array("data" => $json_data))
+    );
 
-
-
-        curl_close($curl); // closes the cURL session [is that the right term, "session"?]
-
-    } // end if curl_intit
-
-    if(isset($data)) $doc = new SimpleXmlElement($data); // No need to run of $data isn't set for some reason
-    //$xml = simplexml_load_string($doc);
-        //echo $xml;
-
-
-    $json = json_encode($doc);
- //        $array = json_decode($json,TRUE);
- //        //echo $arrray;
- //       //echo $buffered;
-
-
-
-  print_r($json);
 ?>
