@@ -12,7 +12,7 @@
     <meta name="author" content="Knut Melvær">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/app.css" />
+
 
 </head>
 
@@ -23,13 +23,15 @@
              <input type="button" id="button" value="Search" />
              <ul id="result"></ul>
         </div>
-
+Results
     <div id="results">
-        Results
+    </div>
+    <div class="ct-chart ct-perfect-fourth">
     </div>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="js/app.js" type="text/javascript"></script>
-
+<link rel="stylesheet" href="bower_components/chartist/libdist/chartist.min.css">
+    <script src="bower_components/chartist/libdist/chartist.min.js"></script>
 </body>
 </html>

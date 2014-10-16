@@ -3,19 +3,21 @@ $(document).ready(function() {
         var searchstring = $("#search").val();
 
         $.ajax({
-            url: 'js/test.php',
-            data: searchstring,
+            url: 'js/content_proxy.php',
+            data: "searchword="+searchstring,
             datatype: 'json',
             type: 'post',
             success: function(output) {
-                console.log(output);
-                $('#results').append().text(output.subtitle);
+                console.dir(output);
+                var options = {
+
+                };
+                Chartist.Line('.ct-chart', output, options);
             }
         });
     }
 
     $("#button").click(function(){
-        console.log("søkte");
         search();
     });
 
@@ -24,6 +26,7 @@ $(document).ready(function() {
             search();
         }
     });
+
 // {
 //                 searchword: searchstring
 //                 // itemsPerPage: 2,

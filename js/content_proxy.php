@@ -1,12 +1,11 @@
 <?php
+if(isset($_POST['searchword']) && !empty($_POST['searchword'])) {
 header('Content-type: application/json');
-
-// In case I need these URLs several places, it's nice to have them as variables
+$searchword = $_POST['searchword'];
 $searchbaseurl = "http://www.nb.no/services/search/v2/search";
-$nburnbaseurl = "http://urn.nb.no/";
-$downloadbaseurl = "http://www.nb.no/nbsok/content/pdf?urn=";
-//$url = $searchbaseurl.$str;
-$url = 'http://www.nb.no/services/search/v2/search/?q=spiritualitet&facet=year&itemsPerPage=10';
+//$url = $searchbaseurl."?q=".$searchword;
+// $url = 'http://www.nb.no/services/search/v2/search/?q='.$searchword.'&facet=year&itemsPerPage=10';
+$url = 'http://www.nb.no/services/search/v2/search/?q='.$searchword.'&facet=year&itemsPerPage=10';
 
 $data = file_get_contents($url);
 
@@ -37,7 +36,7 @@ foreach ($dataArray as $year => $count) {
 
 echo json_encode(
         array("labels" => $json_labels,
-            "series" => array("data" => $json_data))
+        "series" => array($json_data))
     );
-
+}
 ?>
