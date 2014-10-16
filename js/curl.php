@@ -11,7 +11,7 @@ if(function_exists("curl_init")){ // Check if cURL is available
     $nburnbaseurl = "http://urn.nb.no/";
     $downloadbaseurl = "http://www.nb.no/nbsok/content/pdf?urn=";
     //$url = $searchbaseurl.$str;
-    $url = 'http://www.nb.no/services/search/v2/search/?q=spiritualitet&facet=year&itemsPerPage=10';
+    $url = 'http://www.nb.no/services/search/v2/search?q=hamsun';
 
 
     $curl = curl_init(); // I find the setopt_array a bit more organized than the inline init
@@ -38,14 +38,9 @@ if(function_exists("curl_init")){ // Check if cURL is available
     if(isset($data)) $doc = new SimpleXmlElement($data); // No need to run of $data isn't set for some reason
     //$xml = simplexml_load_string($doc);
         //echo $xml;
-
-    $year = $doc->children('nb', TRUE);
-    $json = json_encode($year);
- //        $array = json_decode($json,TRUE);
- //        //echo $arrray;
- //       //echo $buffered;
-
-
-
-  print_r($json);
+        $json = json_encode($doc);
+        //$array = json_decode($json,TRUE);
+        //echo $arrray;
+       //echo $buffered;
+ echo $json;
 ?>
