@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    $.getJSON("proxy.php",function(data){
+    $.getJSON("js/content_proxy.php",function(data){
         var items = [];
         var array = data.entry;
         //console.log(data.link);
