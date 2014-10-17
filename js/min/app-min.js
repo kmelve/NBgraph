@@ -1,1 +1,0 @@
-$(document).foundation(),$.ajax({url:"proxy.php",dataType:"xml",success:function(n){var a=$.xml2json(n);$("#feed").html(JSON.stringify(a)),$.each(a,function(n,a){$.each(a,function(n,a){})})}});

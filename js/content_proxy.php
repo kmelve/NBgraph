@@ -1,11 +1,11 @@
 <?php
-if(isset($_POST['searchword']) && !empty($_POST['searchword'])) {
+if(isset($_GET['searchword']) && !empty($_GET['searchword'])) {
 header('Content-type: application/json');
-$searchword = $_POST['searchword'];
+$searchword = $_GET['searchword'];
 $searchbaseurl = "http://www.nb.no/services/search/v2/search";
 //$url = $searchbaseurl."?q=".$searchword;
 // $url = 'http://www.nb.no/services/search/v2/search/?q='.$searchword.'&facet=year&itemsPerPage=10';
-$url = 'http://www.nb.no/services/search/v2/search/?q='.$searchword.'&facet=year&itemsPerPage=10';
+$url = 'http://www.nb.no/services/search/v2/search/?q='.urlencode($searchword).'&facet=year&itemsPerPage=10';
 
 $data = file_get_contents($url);
 
@@ -36,7 +36,15 @@ foreach ($dataArray as $year => $count) {
 
 echo json_encode(
         array("labels" => $json_labels,
-        "series" => array($json_data))
+        "datasets" => array(array(
+            "label" => "NB",
+            "fillColor" => "rgba(220,220,220,0.6)",
+            "strokeColor" => "rgba(213, 2, 7, 1)",
+            "pointColor" => "rgba(213, 2, 7, 0.7)",
+            "pointStrokeColor" => "#fff",
+            "pointHighlightFill" => "rgba(213, 2, 7, 0.4)",
+            "pointHighlightStroke" => "rgba(220,220,220,1)",
+            "data" => $json_data)))
     );
 }
 ?>
