@@ -3,7 +3,7 @@ Uses a php proxy to retreive search results from the Nasjonalbiblioteket API and
 
 A working demo can be found [here](http://jekyll-hyde.no/nbgraph).
 
-Uses [chart.js](http://www.chartjs.org).
+Uses [Highcharts](http://www.highcharts.com).
 
 More features coming soon!
 

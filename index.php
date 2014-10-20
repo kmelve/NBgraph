@@ -25,6 +25,13 @@
         </div>
     <div id="highcharts"></div>
     <div id="results"></div>
+    <footer>
+    <p>NB Graph is developed by Knut Melvær (<a href="https://twitter.com/kmelve">@kmelve</a>). NB Graph is a free service for education and research.</p>
+    <p><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">NB Graph</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://github.com/kmelve/nbgraph" property="cc:attributionName" rel="cc:attributionURL">Knut Melvær</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a>.<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="http://github.com/kmelve/nbgraph" rel="dct:source">http://github.com/kmelve/nbgraph</a>.</p>
+    <p><a href="http://highcharts.com">Highcharts</a> is licensed under <a href="http://creativecommons.org/licenses/by-nc/3.0/">CC-BY-NC-3.0</a>, which means you can use it for free for non-profit and with attribution.</p>
+
+
+    </footer>
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/highcharts/highcharts.js"></script>
