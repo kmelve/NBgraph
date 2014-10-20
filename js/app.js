@@ -4,6 +4,7 @@ $(document).ready(function() {
         e.preventDefault();
         search();
     });
+    var chart1; // globally available
 });
 function search(){
     var searchstring = $.trim($("#search").val()).replace(' ', '+');
@@ -14,18 +15,27 @@ function search(){
         type: 'get'
     })
     .done(function(output) {
-        var ctx = document.getElementById("myChart").getContext("2d");
-            var myLineChart = new Chart(ctx).Line(output, options);
-            var options = {
-            };
+            chart1 = new Highcharts.Chart({
+                chart: {
+                    renderTo: 'highcharts',
+                    type: 'line'
+                },
+                title: {
+                    text: 'Treff pr. år for «'+searchstring+'» i nb.no'
+                },
+                xAxis: {
+                    categories: output.metadata.yearlabels
+                },
+                yAxis: {
+                    title: {
+                        text: 'Antall treff'
+                    }
+                },
+                series: [{
+                    name: 'Søketreff',
+                    data: output.metadata.yearcount
+                }]
+            });
 
-            var csvlist = output.metadata.yearlabels;
-            var csvitems = ["year, ","frequency","<br />"];
-
-            $.each(csvlist, function(i, item) {
-                 csvitems.push(item + ", " + output.metadata.yearcount[i]+"<br />");
-                 // console.log(metadata.yearlabels[i] + ":" + metadata.yearcount[i]);
-             });
-            $("#results").append().html(csvitems);
     });
 }

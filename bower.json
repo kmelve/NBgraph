@@ -1,0 +1,9 @@
+{
+  "name": "NBgraph",
+  "version": "0.0.1",
+  "dependencies": {
+    "highcharts": "~4.0.4",
+    "jquery": "~2.2.1"
+  },
+  "private": true
+}

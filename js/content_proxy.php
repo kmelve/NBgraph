@@ -38,26 +38,13 @@ if(isset($_GET['searchstring']) && !empty($_GET['searchstring'])) {
     }
 
     echo json_encode(
-            array("labels" => $json_labels,
-                "datasets" =>
-                    array(
-                        array(
-                            "label" => "NB",
-                            "fillColor" => "rgba(220,220,220,0.6)",
-                            "strokeColor" => "rgba(213, 2, 7, 1)",
-                            "pointColor" => "rgba(213, 2, 7, 0.7)",
-                            "pointStrokeColor" => "#fff",
-                            "pointHighlightFill" => "rgba(213, 2, 7, 0.4)",
-                            "pointHighlightStroke" => "rgba(220,220,220,1)",
-                            "data" => $json_data
-                        )
-                    ),
-                    "metadata" => array(
+        array("metadata" => array(
                         "yearlabels" => $json_labels,
                         "yearcount" => $json_data,
                         "seachstring" => $searchstring
-                    )
-            )
+                    ))
+
+
         );
 }
 ?>
