@@ -11,12 +11,15 @@
     <meta name="keywords" content="Nasjonalbiblioteket">
     <meta name="author" content="Knut Melvær">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="all" href="css/app.css">
 
 
 </head>
 
 <body id="NBgraph">
-    <h1>NB Graph</h1>
+    <header>
+        <h1>NB Graph</h1>
+    </header>
     <div id="container">
     <form>
         <input type="text" id="search" placeholder="Søkeord"/>
@@ -35,6 +38,7 @@
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/highcharts/highcharts.js"></script>
+    <script src="bower_components/highcharts/modules/exporting.js"></script>
     <script src="js/app.js" type="text/javascript"></script>
     <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
