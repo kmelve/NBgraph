@@ -21,18 +21,18 @@ function search(){
                     type: 'line'
                 },
                 title: {
-                    text: 'Treff pr. år for «'+searchstring+'» i nb.no'
+                    text: 'Hits pr. year for “<em>'+searchstring+'</em>” in nb.no'
                 },
                 xAxis: {
                     categories: output.metadata.yearlabels
                 },
                 yAxis: {
                     title: {
-                        text: 'Antall treff'
+                        text: 'Search results frequency'
                     }
                 },
                 series: [{
-                    name: 'Søketreff',
+                    name: 'Search results',
                     data: output.metadata.yearcount
                 }]
             });
