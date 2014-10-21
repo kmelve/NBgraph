@@ -36,6 +36,9 @@ function search(){
                     data: output.metadata.yearcount
                 }]
             });
+        var searchurl = "http://www.nb.no/services/search/v2/search?q=";
+        var searchparameter = searchstring+output.metadata.searchparameters;
+        $("#parameter").append().html("Search parameter string: <a href="+searchurl+searchparameter+"><code>?q="+searchparameter+"</code></a>");
 
     });
 }

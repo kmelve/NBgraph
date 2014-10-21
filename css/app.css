@@ -1,6 +1,11 @@
 body {
     font-family: Helvetica, sans-serif;
+    margin: 1em 5em 1em 1em;
 }
 header {
     margin: 1em 0 10em 0;
+}
+code {
+    white-space: pre;
+    word-wrap: break-word;
 }
