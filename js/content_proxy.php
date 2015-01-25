@@ -4,7 +4,7 @@ if(isset($_GET['searchstring']) && !empty($_GET['searchstring'])) {
     $searchstring = $_GET['searchstring'];
     $searchbaseurl = "http://www.nb.no/services/search/v2/search?q=";
     $searchparameters = "&(contentClasses:'restricted'%20OR%20contentClasses:'public'%20OR%20contentClasses:'bokhylla'%20OR%20metadataClasses:'public'%20OR%20metadataClasses:'restricted')&ft=true&facet=year&itemsPerPage=1";
-    $url = $searchbaseurl.$searchstring.$searchparameters;
+    $url = $searchbaseurl.urlencode($searchstring).$searchparameters;
     // $searchparameters = "%20(contentClasses:%22public%22)&ft=all";
     // $url = $searchbaseurl."?q=".$searchstring."%20".$searchparameters;
     // $url = "http://www.nb.no/services/search/v2/search?q=hamsun%20facet=year%20itemsPerPage=1"
